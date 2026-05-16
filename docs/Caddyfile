@@ -9,5 +9,4 @@
     X-Content-Type-Options "nosniff"
     Referrer-Policy "strict-origin-when-cross-origin"
   }
-  log { output stdout; format console; level WARN }
 }
