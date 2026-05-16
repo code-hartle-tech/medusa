@@ -1,6 +1,5 @@
 # medusa docs container — multi-stage.
-# Stage 1 builds both VitePress halves; stage 2 wraps the chosen variant
-# in caddy:2-alpine. VARIANT build-arg picks {external, internal, landing}.
+# VARIANT build-arg picks {external, internal, landing}.
 
 ARG VARIANT=external
 
@@ -13,18 +12,20 @@ RUN npm ci --no-audit --no-fund
 
 COPY . .
 RUN npm run external:build && npm run internal:build
-# Landing is static HTML in landing/ — no build step.
+
+# Normalize all three variants into /staging/<variant>/ so the runtime
+# COPY can pick one with a single line, regardless of build vs static.
+RUN mkdir -p /staging/external /staging/internal /staging/landing && \
+    cp -r external/.vitepress/dist/. /staging/external/ && \
+    cp -r internal/.vitepress/dist/. /staging/internal/ && \
+    cp -r landing/. /staging/landing/
 
 # ── runtime stage ────────────────────────────────────────────────────
 FROM caddy:2-alpine AS runtime
 ARG VARIANT
 WORKDIR /srv
 
-# external + internal → .vitepress/dist; landing → directly.
-COPY --from=build /src/${VARIANT}/.vitepress/dist /srv-vp
-COPY --from=build /src/landing /srv-landing
-# Pick whichever exists. `tools.sh` trick: use a shell conditional via RUN.
-RUN if [ "${VARIANT}" = "landing" ]; then cp -r /srv-landing/. /srv/; else cp -r /srv-vp/. /srv/; fi
+COPY --from=build /staging/${VARIANT}/ /srv/
 COPY Caddyfile /etc/caddy/Caddyfile
 
 USER nobody
