@@ -22,6 +22,13 @@ RUN mkdir -p /staging/external /staging/internal /staging/landing && \
 
 # ── runtime stage ────────────────────────────────────────────────────
 FROM caddy:2-alpine AS runtime
+# Drop CAP_NET_BIND_SERVICE fcap from /usr/bin/caddy. With our
+# securityContext (drop:[ALL] + allowPrivilegeEscalation:false +
+# runAsNonRoot:true), fcap-bearing binaries fail exec with EPERM
+# under NoNewPrivs. Stripping the fcap is the cleanest fix; we
+# listen on :8080 anyway, no low-port bind needed.
+USER root
+RUN setcap -r /usr/bin/caddy || true
 ARG VARIANT
 WORKDIR /srv
 
