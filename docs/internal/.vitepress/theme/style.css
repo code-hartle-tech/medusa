@@ -1,0 +1,97 @@
+/* Medusa internal wiki — identical brand to the external site.
+ * Per operator policy: /wiki/ should look the same as the public site.
+ * Mirror of docs/external/.vitepress/theme/style.css — keep in sync. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --md-primary-serpent: #2DAB66;
+  --md-serpent-deep:    #0F7A40;
+  --md-serpent-soft:    #E8F7EE;
+  --md-gaze-amber:      #F59E0B;
+  --md-gaze-amber-soft: #FEF3C7;
+  --md-stone-gray:      #6B7280;
+  --md-stone-light:     #F3F4F6;
+  --md-mortal-ink:      #0F1419;
+  --md-white:           #FFFFFF;
+  --md-mirror-silver:   #E5E7EB;
+
+  --vp-c-brand-1:    var(--md-primary-serpent);
+  --vp-c-brand-2:    var(--md-serpent-deep);
+  --vp-c-brand-3:    var(--md-serpent-deep);
+  --vp-c-brand-soft: var(--md-serpent-soft);
+
+  --vp-c-bg:         var(--md-white);
+  --vp-c-bg-alt:     var(--md-stone-light);
+  --vp-c-text-1:     var(--md-mortal-ink);
+  --vp-c-text-2:     #374151;
+  --vp-c-text-3:     var(--md-stone-gray);
+  --vp-c-divider:    var(--md-mirror-silver);
+
+  --vp-button-brand-bg:           var(--md-primary-serpent);
+  --vp-button-brand-hover-bg:     var(--md-serpent-deep);
+  --vp-button-brand-active-bg:    #0A5A30;
+  --vp-button-brand-border:       var(--md-primary-serpent);
+  --vp-button-brand-hover-border: var(--md-serpent-deep);
+  --vp-button-brand-text:         var(--md-white);
+
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --vp-font-family-heading: 'Space Grotesk', 'Inter', sans-serif;
+
+  --vp-home-hero-name-color: var(--md-mortal-ink);
+}
+
+h1, h2, h3 {
+  font-family: var(--vp-font-family-heading);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* INTERNAL banner above the nav — gaze-amber strip so visitors clock the
+ * content shape (operator-only) instantly. */
+.VPNav::before {
+  content: 'TAILNET-ONLY · INTERNAL WIKI · medusa.hartle.tech/wiki';
+  display: block;
+  background: var(--md-gaze-amber);
+  color: var(--md-mortal-ink);
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 7px 12px;
+  position: relative;
+  z-index: 100;
+}
+
+.VPFeature, .VPHomeFeatures .item {
+  border-radius: 16px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--md-white);
+}
+
+.VPButton.brand {
+  border-radius: 12px;
+  font-weight: 600;
+  font-family: var(--vp-font-family-heading);
+}
+
+.VPNavBarMenu, .VPNavBarMenuLink, .VPNavBarTitle .title {
+  font-family: var(--vp-font-family-heading);
+  font-weight: 600;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(45, 171, 102, 0.15) 20%,
+    var(--md-primary-serpent) 50%,
+    rgba(45, 171, 102, 0.15) 80%,
+    transparent 100%);
+  opacity: 0.5;
+  margin: 2rem 0;
+}

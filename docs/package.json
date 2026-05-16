@@ -1,0 +1,19 @@
+{
+  "name": "medusa-docs",
+  "version": "0.1.0",
+  "description": "Medusa docs — public (medusa.hartle.tech/docs) + internal wiki (medusa.hartle.tech/wiki, tailnet-only). Built + served by Caddy + medusa_docs Ansible role on the OVH VPS.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "external:dev":     "vitepress dev external",
+    "external:build":   "vitepress build external",
+    "external:preview": "vitepress preview external",
+    "internal:dev":     "vitepress dev internal --port 5176",
+    "internal:build":   "vitepress build internal",
+    "internal:preview": "vitepress preview internal --port 5176",
+    "build":            "npm run external:build && npm run internal:build"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

@@ -12,6 +12,7 @@ build/
 # RuFlo runtime state (regenerated on every run; not source)
 .claude-flow/
 .swarm/
+.hive-mind/
 ruvector.db
 *.ruvector.db
 
@@ -33,10 +34,13 @@ ruvector.db
 .claude/scheduled_tasks.lock
 .claude/settings.local.json.bak
 
-# Node-side (docs/, when scaffolded)
-node_modules/
+# VitePress docs site
+docs/node_modules/
 docs/external/.vitepress/dist/
 docs/external/.vitepress/cache/
+docs/internal/.vitepress/dist/
+docs/internal/.vitepress/cache/
+# /docs/package-lock.json — intentionally NOT ignored; committed for CI reproducibility
 
 # Local hardware tooling artifacts
 *.gerber.zip
