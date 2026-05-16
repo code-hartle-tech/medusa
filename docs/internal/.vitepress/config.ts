@@ -10,11 +10,14 @@ export default defineConfig({
   description: 'Tailnet-only internal wiki for the Medusa project. Research, design, hardware notes.',
   lang: 'en-US',
   cleanUrls: true,
-  // Served at https://private.medusa.hartle.tech/ via Caddy on the VPS.
-  // DNS A record points at the tailnet IP (100.105.94.108) — the DNS
-  // itself is the access boundary, like void.hartle.tech. No Caddy
-  // remote_ip gate; off-tailnet clients can't resolve / route here.
-  base: '/',
+  // Served at https://medusa.hartle.tech/wiki/ via Caddy on the VPS.
+  // Tailnet-only: Caddy's @tailnet remote_ip 100.x matcher gates the
+  // /wiki/* path. Tailscale extraDNSRecords (in tailscale_acl.tf)
+  // overrides medusa.hartle.tech to the VPS tailnet IP for tailnet
+  // members, so traffic reaches Caddy with a tailnet source IP that
+  // the matcher accepts. Off-tailnet clients hit the public IP and get
+  // 404 from the wiki path (public site / and /docs/ still serve).
+  base: '/wiki/',
   appearance: false,
 
   // Cross-site refs to ../external/*, ../ (repo root) won't resolve from
