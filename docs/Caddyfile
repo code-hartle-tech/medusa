@@ -1,0 +1,13 @@
+# In-pod Caddy. Edge TLS + tailnet IP gate handled by host Caddy.
+:80 {
+  root * /srv
+  try_files {path} {path}.html /index.html
+  file_server
+  encode gzip zstd
+  header {
+    Cache-Control "public, max-age=300"
+    X-Content-Type-Options "nosniff"
+    Referrer-Policy "strict-origin-when-cross-origin"
+  }
+  log { output stdout; format console; level WARN }
+}
