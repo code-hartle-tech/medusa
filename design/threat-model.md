@@ -15,18 +15,30 @@ offensive tool.
 | Capability | Description | Defensive use case |
 |---|---|---|
 | WiFi 2.4 GHz **passive** sniffing (monitor mode) | Capture raw 802.11 frames without transmitting | Audit which devices are broadcasting probe requests, what SSIDs they're looking for, are any of them inadvertently leaking owner identity |
+| WiFi 2.4 GHz **active** transmission — including raw 802.11 management frames (deauth, disassoc) | Operator-triggered transmission of arbitrary frames, including kicking misbehaving devices off their own network for audit | Verify a device responds correctly to a reconnect cycle; test PMF (802.11w) deployment on the operator's APs; reproduce techniques used by Marauder-class tools for hardware research. See `research/marauder-deauth-patch.md` for the implementation analysis. |
 | BLE 5 **passive** scanning | Capture advertisements, parse beacon payloads | Inventory BLE devices in a space; spot trackers/AirTags; check that your own BLE devices don't broadcast more than they should |
 | ESP-NOW peer link between Medusa units | Encrypted mesh between operator's own cases | Multi-point coverage of a larger area for the same audit |
 | Companion-app pairing (BLE-bonded) | Authenticated link to the operator's phone | UI surface; capture summary; export to phone storage |
+
+## Operator safety guards on the active TX capability
+
+Because active transmission moves Medusa from "passive observer" to "actively disruptive to whatever's on the air," every TX op ships with operator-side guards. These are firmware-enforced, not just UI:
+
+- **Explicit per-session enable** — active TX is OFF by default at boot. Operator confirms via the companion app for each session.
+- **Allow-list of BSSIDs** — operator-configured. Deauths target only BSSIDs the operator has listed (their own networks). Firmware drops TX ops against unlisted BSSIDs.
+- **Rate limit** — max deauths/sec ceiling. Prevents accidental fire-hose.
+- **Audit log** — every TX op writes to NVS (target BSSID, target STA MAC, timestamp, operator session id). Exportable to the companion for record-keeping.
+- **Companion confirmation for broadcast deauths** — broadcast deauths (DA = `FF:FF:FF:FF:FF:FF`) require a separate operator confirmation; default is unicast-only.
+
+These guards don't make the capability legal in jurisdictions where transmission against unowned networks is illegal — they make it harder to misuse accidentally. The lawful-use clause in `NOTICE` is binding regardless.
 
 ## Explicitly out-of-scope (won't ship)
 
 | Out of scope | Why |
 |---|---|
-| **Active deauth/disassoc** frames | Disruptive to operating networks; illegal in most jurisdictions when used against networks you don't own; defensible audit doesn't need it |
 | **Evil-twin AP impersonation** | Real attack technique; ships only with explicit user-flagged research forks; HARTLE.TECH does not document its operation |
 | **Captive-portal credential harvesting** | Same logic — packaged offensive utility we won't distribute |
-| **Automated handshake brute-force** | Different attack class; out of our research lane |
+| **Automated handshake brute-force / WPA dictionary attack** | Different attack class; out of our research lane |
 | **GPS / location tagging of captured devices** without explicit consent | Privacy-incompatible default |
 
 A fork that adds out-of-scope features may exist downstream of Medusa;
