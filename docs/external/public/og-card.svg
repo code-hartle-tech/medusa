@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Medusa social-card — 1200×630 (standard og:image dimensions).
+       Charcoal background, big green-yellow gradient title, mascot lower-right. -->
+  <defs>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="30%" stop-color="#04D94F"/>
+      <stop offset="100%" stop-color="#F2E749"/>
+    </linearGradient>
+    <radialGradient id="hoodG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#04D94F"/>
+      <stop offset="60%" stop-color="#04BF55"/>
+      <stop offset="100%" stop-color="#02735E"/>
+    </radialGradient>
+    <radialGradient id="bgGlow" cx="80%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(2,115,94,0.45)"/>
+      <stop offset="100%" stop-color="rgba(44,43,48,0)"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#2C2B30"/>
+  <rect width="1200" height="630" fill="url(#bgGlow)"/>
+
+  <!-- Mascot on the right -->
+  <g transform="translate(900,315)">
+    <circle cx="0" cy="0" r="200" fill="#2C2B30" stroke="#04BF55" stroke-width="3"/>
+    <g fill="none" stroke="#04D94F" stroke-width="8" stroke-linecap="round">
+      <path d="M0 -150 Q-25 -190 -50 -210"/>
+      <path d="M0 -150 Q25 -190 50 -210"/>
+      <path d="M-65 -110 Q-110 -130 -150 -130"/>
+      <path d="M65 -110 Q110 -130 150 -130"/>
+      <path d="M-90 -30 Q-150 -30 -190 -10"/>
+      <path d="M90 -30 Q150 -30 190 -10"/>
+      <path d="M-80 65 Q-130 100 -160 145"/>
+      <path d="M80 65 Q130 100 160 145"/>
+    </g>
+    <ellipse cx="0" cy="15" rx="90" ry="105" fill="url(#hoodG)"/>
+    <circle cx="0" cy="0" r="30" fill="#F2E749"/>
+    <circle cx="0" cy="0" r="13" fill="#2C2B30"/>
+    <circle cx="9" cy="-9" r="4" fill="#F2E749"/>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="290"
+        font-family="'Space Grotesk', 'Inter', system-ui, sans-serif"
+        font-weight="700" font-size="140"
+        fill="url(#titleGrad)" letter-spacing="-3">Medusa</text>
+  <text x="80" y="360"
+        font-family="'Space Grotesk', 'Inter', system-ui, sans-serif"
+        font-weight="600" font-size="44"
+        fill="#E6E5EA">The gorgon listens.</text>
+  <text x="80" y="430"
+        font-family="'Inter', system-ui, sans-serif"
+        font-weight="400" font-size="28"
+        fill="#B8B6BF">ESP32-S3 in a phone case. Wireless recon for</text>
+  <text x="80" y="470"
+        font-family="'Inter', system-ui, sans-serif"
+        font-weight="400" font-size="28"
+        fill="#B8B6BF">the networks you own.</text>
+
+  <!-- Footer -->
+  <text x="80" y="570"
+        font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-weight="500" font-size="22"
+        fill="#7A7980" letter-spacing="2">HARTLE.TECH · medusa.hartle.tech</text>
+</svg>

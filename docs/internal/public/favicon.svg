@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Medusa favicon — minimal version of the mascot for 16-32px display.
+       Drop the snake rays (illegible at small size); keep the charcoal disc + green hood + yellow eye. -->
+  <circle cx="16" cy="16" r="15.5" fill="#2C2B30" stroke="#04BF55" stroke-width="1"/>
+  <ellipse cx="16" cy="17" rx="9" ry="10" fill="#04BF55"/>
+  <circle cx="16" cy="16" r="4" fill="#F2E749"/>
+  <circle cx="16" cy="16" r="1.6" fill="#2C2B30"/>
+</svg>

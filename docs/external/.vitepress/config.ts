@@ -26,10 +26,28 @@ export default defineConfig({
   ],
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/docs/medusa-mascot.svg' }],
+    // Favicons — SVG primary (scales clean), .ico fallback for ancient browsers
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/docs/favicon.svg' }],
+    ['link', { rel: 'alternate icon', href: '/docs/favicon.svg' }],
+    ['link', { rel: 'apple-touch-icon', href: '/docs/medusa-mascot.svg' }],
+    ['link', { rel: 'mask-icon', href: '/docs/favicon.svg', color: '#04D94F' }],
+    // Mobile + theme
     ['meta', { name: 'theme-color', content: '#2C2B30' }],
+    ['meta', { name: 'color-scheme', content: 'dark' }],
+    // Open Graph
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:url', content: 'https://medusa.hartle.tech/docs/' }],
     ['meta', { property: 'og:title', content: 'Medusa — Embedded wireless recon' }],
     ['meta', { property: 'og:description', content: 'A defensive research tool for auditing the radio surface of networks you own. HARTLE.TECH.' }],
+    ['meta', { property: 'og:image', content: 'https://medusa.hartle.tech/docs/og-card.svg' }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { property: 'og:site_name', content: 'Medusa' }],
+    // Twitter
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:title', content: 'Medusa — Embedded wireless recon' }],
+    ['meta', { name: 'twitter:description', content: 'ESP32-S3 in a phone case. Wireless recon for the networks you own. HARTLE.TECH.' }],
+    ['meta', { name: 'twitter:image', content: 'https://medusa.hartle.tech/docs/og-card.svg' }],
   ],
 
   themeConfig: {

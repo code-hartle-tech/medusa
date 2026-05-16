@@ -29,11 +29,15 @@ export default defineConfig({
   ],
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/wiki/medusa-mascot.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/wiki/favicon.svg' }],
+    ['link', { rel: 'apple-touch-icon', href: '/wiki/medusa-mascot.svg' }],
+    ['link', { rel: 'mask-icon', href: '/wiki/favicon.svg', color: '#04D94F' }],
     ['meta', { name: 'theme-color', content: '#2C2B30' }],
+    ['meta', { name: 'color-scheme', content: 'dark' }],
     // Access control is enforced by Caddy at the network layer. noindex is
     // belt-and-suspenders so any tailnet member sharing a link doesn't
-    // accidentally trip a crawler.
+    // accidentally trip a crawler. Also no OG/twitter — wiki shouldn't
+    // generate social previews even if a link leaks.
     ['meta', { name: 'robots', content: 'noindex,nofollow' }],
   ],
 

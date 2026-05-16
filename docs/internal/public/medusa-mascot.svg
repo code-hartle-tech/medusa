@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Medusa mascot — venom-snake palette v2 (2026-05-16).
+       Charcoal background, bright-green hood + snake rays, gaze-yellow eye.
+       Simple enough to read at 16×16 favicon size, scales clean. -->
+  <defs>
+    <radialGradient id="hood" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#04D94F"/>
+      <stop offset="60%" stop-color="#04BF55"/>
+      <stop offset="100%" stop-color="#02735E"/>
+    </radialGradient>
+  </defs>
+
+  <!-- charcoal disc -->
+  <circle cx="32" cy="32" r="31" fill="#2C2B30" stroke="#04BF55" stroke-width="1.5"/>
+
+  <!-- snake-rays radiating from center (Medusa's hair) -->
+  <g fill="none" stroke="#04D94F" stroke-width="2.4" stroke-linecap="round">
+    <!-- top -->
+    <path d="M32 14 Q28 8 24 5"/>
+    <path d="M32 14 Q36 8 40 5"/>
+    <!-- upper-left + upper-right -->
+    <path d="M22 18 Q14 14 8 14"/>
+    <path d="M42 18 Q50 14 56 14"/>
+    <!-- mid-left + mid-right -->
+    <path d="M18 28 Q10 28 6 32"/>
+    <path d="M46 28 Q54 28 58 32"/>
+    <!-- lower-left + lower-right -->
+    <path d="M20 40 Q12 44 8 50"/>
+    <path d="M44 40 Q52 44 56 50"/>
+  </g>
+
+  <!-- hood (face shape) -->
+  <ellipse cx="32" cy="34" rx="14" ry="16" fill="url(#hood)"/>
+
+  <!-- single gaze-yellow eye, centered -->
+  <circle cx="32" cy="32" r="5" fill="#F2E749"/>
+  <circle cx="32" cy="32" r="2.2" fill="#2C2B30"/>
+  <!-- gaze glint -->
+  <circle cx="33.5" cy="30.5" r="0.7" fill="#F2E749"/>
+</svg>
