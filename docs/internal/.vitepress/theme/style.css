@@ -1,63 +1,73 @@
-/* Medusa internal wiki — identical brand to the external site.
- * Per operator policy: /wiki/ should look the same as the public site.
- * Mirror of docs/external/.vitepress/theme/style.css — keep in sync. */
+/* Medusa internal wiki — same dark venom-snake palette as the public site.
+ * Mirror of docs/external/.vitepress/theme/style.css. Keep in sync — when
+ * the canonical palette changes, change both. See memory: medusa_brand_palette.md.
+ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --md-primary-serpent: #2DAB66;
-  --md-serpent-deep:    #0F7A40;
-  --md-serpent-soft:    #E8F7EE;
-  --md-gaze-amber:      #F59E0B;
-  --md-gaze-amber-soft: #FEF3C7;
-  --md-stone-gray:      #6B7280;
-  --md-stone-light:     #F3F4F6;
-  --md-mortal-ink:      #0F1419;
-  --md-white:           #FFFFFF;
-  --md-mirror-silver:   #E5E7EB;
+  --md-gaze-yellow:      #F2E749;
+  --md-gaze-yellow-soft: rgba(242, 231, 73, 0.15);
+  --md-hood-charcoal:    #2C2B30;
+  --md-deep-teal:        #02735E;
+  --md-mid-green:        #04BF55;
+  --md-bright-green:     #04D94F;
 
-  --vp-c-brand-1:    var(--md-primary-serpent);
-  --vp-c-brand-2:    var(--md-serpent-deep);
-  --vp-c-brand-3:    var(--md-serpent-deep);
-  --vp-c-brand-soft: var(--md-serpent-soft);
+  --md-surface:          #36353B;
+  --md-surface-2:        #42414A;
+  --md-divider:          #4A4951;
+  --md-text-primary:     #E6E5EA;
+  --md-text-secondary:   #B8B6BF;
+  --md-text-muted:       #7A7980;
 
-  --vp-c-bg:         var(--md-white);
-  --vp-c-bg-alt:     var(--md-stone-light);
-  --vp-c-text-1:     var(--md-mortal-ink);
-  --vp-c-text-2:     #374151;
-  --vp-c-text-3:     var(--md-stone-gray);
-  --vp-c-divider:    var(--md-mirror-silver);
+  --vp-c-brand-1:    var(--md-mid-green);
+  --vp-c-brand-2:    var(--md-bright-green);
+  --vp-c-brand-3:    var(--md-deep-teal);
+  --vp-c-brand-soft: rgba(4, 191, 85, 0.16);
 
-  --vp-button-brand-bg:           var(--md-primary-serpent);
-  --vp-button-brand-hover-bg:     var(--md-serpent-deep);
-  --vp-button-brand-active-bg:    #0A5A30;
-  --vp-button-brand-border:       var(--md-primary-serpent);
-  --vp-button-brand-hover-border: var(--md-serpent-deep);
-  --vp-button-brand-text:         var(--md-white);
+  --vp-c-bg:         var(--md-hood-charcoal);
+  --vp-c-bg-alt:     var(--md-surface);
+  --vp-c-bg-elv:     var(--md-surface);
+  --vp-c-bg-soft:    var(--md-surface);
+  --vp-c-text-1:     var(--md-text-primary);
+  --vp-c-text-2:     var(--md-text-secondary);
+  --vp-c-text-3:     var(--md-text-muted);
+  --vp-c-divider:    var(--md-divider);
+  --vp-c-border:     var(--md-divider);
+
+  --vp-button-brand-bg:           var(--md-mid-green);
+  --vp-button-brand-hover-bg:     var(--md-bright-green);
+  --vp-button-brand-active-bg:    var(--md-deep-teal);
+  --vp-button-brand-border:       var(--md-mid-green);
+  --vp-button-brand-hover-border: var(--md-bright-green);
+  --vp-button-brand-text:         var(--md-hood-charcoal);
 
   --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --vp-font-family-heading: 'Space Grotesk', 'Inter', sans-serif;
 
-  --vp-home-hero-name-color: var(--md-mortal-ink);
+  --vp-home-hero-name-color: var(--md-bright-green);
+
+  color-scheme: dark;
 }
 
 h1, h2, h3 {
   font-family: var(--vp-font-family-heading);
   letter-spacing: -0.02em;
   font-weight: 700;
+  color: var(--md-text-primary);
 }
 
-/* INTERNAL banner above the nav — gaze-amber strip so visitors clock the
- * content shape (operator-only) instantly. */
+/* TAILNET-ONLY banner — gaze-yellow strip so visitors clock the
+ * internal-content shape instantly. */
 .VPNav::before {
   content: 'TAILNET-ONLY · INTERNAL WIKI · medusa.hartle.tech/wiki';
   display: block;
-  background: var(--md-gaze-amber);
-  color: var(--md-mortal-ink);
+  background: var(--md-gaze-yellow);
+  color: var(--md-hood-charcoal);
   font-family: var(--vp-font-family-mono);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-align: center;
@@ -68,8 +78,18 @@ h1, h2, h3 {
 
 .VPFeature, .VPHomeFeatures .item {
   border-radius: 16px;
-  border: 1px solid var(--vp-c-divider);
-  background: var(--md-white);
+  border: 1px solid var(--md-divider);
+  background: var(--md-surface);
+}
+
+.VPFeature:hover {
+  border-color: rgba(4, 217, 79, 0.40);
+  box-shadow: 0 8px 22px rgba(4, 217, 79, 0.15);
+}
+
+.VPFeature .icon {
+  background: rgba(4, 191, 85, 0.14);
+  border-radius: 12px;
 }
 
 .VPButton.brand {
@@ -83,15 +103,87 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
+.VPNavBarMenuLink {
+  color: var(--md-text-secondary);
+}
+
+.VPNavBarMenuLink:hover, .VPNavBarMenuLink.active {
+  color: var(--md-bright-green);
+}
+
+.VPSidebarItem .text {
+  color: var(--md-text-secondary);
+}
+
+.VPSidebarItem.is-link .item:hover .text,
+.VPSidebarItem.is-active .text {
+  color: var(--md-bright-green);
+}
+
+.vp-doc a {
+  color: var(--md-bright-green);
+  text-decoration-color: rgba(4, 217, 79, 0.4);
+}
+
+.vp-doc a:hover {
+  color: var(--md-gaze-yellow);
+  text-decoration-color: var(--md-gaze-yellow);
+}
+
+.vp-doc code {
+  background: var(--md-surface);
+  color: var(--md-gaze-yellow);
+  border: 1px solid var(--md-divider);
+}
+
+.vp-doc pre {
+  background: #1F1E22;
+  border: 1px solid var(--md-divider);
+}
+
+.vp-doc table {
+  border-color: var(--md-divider);
+}
+
+.vp-doc th, .vp-doc tr {
+  background: var(--md-surface);
+  border-color: var(--md-divider);
+}
+
+.vp-doc tr:nth-child(2n) {
+  background: var(--md-hood-charcoal);
+}
+
 hr {
   border: none;
   height: 1px;
   background: linear-gradient(to right,
     transparent 0%,
-    rgba(45, 171, 102, 0.15) 20%,
-    var(--md-primary-serpent) 50%,
-    rgba(45, 171, 102, 0.15) 80%,
+    rgba(4, 191, 85, 0.20) 20%,
+    var(--md-bright-green) 45%,
+    var(--md-gaze-yellow) 55%,
+    rgba(242, 231, 73, 0.20) 80%,
     transparent 100%);
-  opacity: 0.5;
+  opacity: 0.6;
   margin: 2rem 0;
+}
+
+.vp-doc .custom-block.info {
+  border-color: var(--md-deep-teal);
+  background: rgba(2, 115, 94, 0.12);
+}
+
+.vp-doc .custom-block.tip {
+  border-color: var(--md-bright-green);
+  background: rgba(4, 217, 79, 0.10);
+}
+
+.vp-doc .custom-block.warning {
+  border-color: var(--md-gaze-yellow);
+  background: var(--md-gaze-yellow-soft);
+}
+
+.vp-doc .custom-block.danger {
+  border-color: #E94545;
+  background: rgba(233, 69, 69, 0.10);
 }

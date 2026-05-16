@@ -18,7 +18,7 @@ export default defineConfig({
   // the matcher accepts. Off-tailnet clients hit the public IP and get
   // 404 from the wiki path (public site / and /docs/ still serve).
   base: '/wiki/',
-  appearance: false,
+  appearance: 'force-dark',  // v2 brand: dark-only. See brand_tokens.yaml v2.
 
   // Cross-site refs to ../external/*, ../ (repo root) won't resolve from
   // a build of this site alone. Tolerate.
@@ -30,7 +30,7 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/wiki/medusa-mascot.svg' }],
-    ['meta', { name: 'theme-color', content: '#2DAB66' }],
+    ['meta', { name: 'theme-color', content: '#2C2B30' }],
     // Access control is enforced by Caddy at the network layer. noindex is
     // belt-and-suspenders so any tailnet member sharing a link doesn't
     // accidentally trip a crawler.

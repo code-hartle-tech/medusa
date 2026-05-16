@@ -4,56 +4,151 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Medusa — HARTLE.TECH</title>
-  <meta name="theme-color" content="#2DAB66">
+  <meta name="theme-color" content="#2C2B30">
+  <meta name="description" content="ESP32-S3 inside a phone case — paired with your phone for the UI. A defensive research tool for auditing the radio surface of the networks you own.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --md-primary-serpent: #2DAB66;
-      --md-serpent-deep:    #0F7A40;
-      --md-gaze-amber:      #F59E0B;
-      --md-stone-gray:      #6B7280;
-      --md-stone-light:     #F3F4F6;
-      --md-mortal-ink:      #0F1419;
-      --md-white:           #FFFFFF;
-      --md-mirror-silver:   #E5E7EB;
+      --md-gaze-yellow:    #F2E749;
+      --md-hood-charcoal:  #2C2B30;
+      --md-deep-teal:      #02735E;
+      --md-mid-green:      #04BF55;
+      --md-bright-green:   #04D94F;
+      --md-surface:        #36353B;
+      --md-divider:        #4A4951;
+      --md-text-primary:   #E6E5EA;
+      --md-text-secondary: #B8B6BF;
+      --md-text-muted:     #7A7980;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--md-white); color: var(--md-mortal-ink); line-height: 1.55; }
+    html, body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--md-hood-charcoal);
+      color: var(--md-text-primary);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
     header { padding: 2rem 0 1rem; }
-    .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.5rem;
-      color: var(--md-mortal-ink); text-decoration: none; letter-spacing: -0.01em; }
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--md-text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .brand:hover { color: var(--md-bright-green); }
     main { padding: 4rem 0 6rem; }
-    .hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
-    @media (max-width: 760px) { .hero { grid-template-columns: 1fr; } .hero-img { display: none; } }
-    h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(2.75rem, 6vw, 4.5rem); letter-spacing: -0.02em; line-height: 1.05;
-      color: var(--md-mortal-ink); margin-bottom: 1rem; }
-    .text { font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: clamp(1.5rem, 3vw, 2.25rem); color: var(--md-mortal-ink); margin-bottom: 1.5rem; }
-    .tagline { font-size: 1.0625rem; color: #374151; margin-bottom: 2rem; max-width: 38em; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-img-wrap { display: none; }
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      background: linear-gradient(120deg, var(--md-bright-green) 30%, var(--md-gaze-yellow) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      color: var(--md-text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .tagline {
+      font-size: 1.0625rem;
+      color: var(--md-text-secondary);
+      margin-bottom: 2rem;
+      max-width: 38em;
+    }
     .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; padding: 0.75rem 1.5rem; border-radius: 12px;
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem;
-      text-decoration: none; transition: all 0.15s ease; }
-    .btn-primary { background: var(--md-primary-serpent); color: var(--md-white); border: 1px solid var(--md-primary-serpent); }
-    .btn-primary:hover { background: var(--md-serpent-deep); border-color: var(--md-serpent-deep); }
-    .btn-alt { background: var(--md-white); color: var(--md-mortal-ink); border: 1px solid var(--md-mortal-ink); }
-    .btn-alt:hover { background: var(--md-stone-light); }
-    .hero-img-wrap { display: flex; justify-content: center; align-items: center; }
-    .hero-img { width: 240px; height: 240px; background: var(--md-serpent-soft); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 7rem; }
-    .lawful-note { margin-top: 4rem; padding: 1.25rem 1.5rem;
-      border-left: 4px solid var(--md-gaze-amber); background: #FEF3C7;
-      border-radius: 0 8px 8px 0; font-size: 0.9375rem; }
-    .lawful-note a { color: var(--md-serpent-deep); }
-    footer { padding: 3rem 0; border-top: 1px solid var(--md-mirror-silver);
-      color: var(--md-stone-gray); font-size: 0.875rem; }
-    footer a { color: var(--md-serpent-deep); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .btn-primary {
+      background: var(--md-mid-green);
+      color: var(--md-hood-charcoal);
+      border: 1px solid var(--md-mid-green);
+    }
+    .btn-primary:hover {
+      background: var(--md-bright-green);
+      border-color: var(--md-bright-green);
+      box-shadow: 0 6px 20px rgba(4, 217, 79, 0.25);
+    }
+    .btn-alt {
+      background: transparent;
+      color: var(--md-text-primary);
+      border: 1px solid var(--md-divider);
+    }
+    .btn-alt:hover {
+      background: var(--md-surface);
+      border-color: var(--md-text-primary);
+    }
+    .hero-img-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-img {
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle at 30% 30%, var(--md-deep-teal) 0%, var(--md-hood-charcoal) 75%);
+      border: 1px solid var(--md-divider);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      box-shadow: 0 0 50px rgba(4, 217, 79, 0.15), inset 0 0 30px rgba(2, 115, 94, 0.3);
+    }
+    .lawful-note {
+      margin-top: 4rem;
+      padding: 1.25rem 1.5rem;
+      border-left: 4px solid var(--md-gaze-yellow);
+      background: rgba(242, 231, 73, 0.10);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9375rem;
+      color: var(--md-text-primary);
+    }
+    .lawful-note strong { color: var(--md-gaze-yellow); }
+    .lawful-note a { color: var(--md-bright-green); }
+    .lawful-note a:hover { color: var(--md-gaze-yellow); }
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--md-divider);
+      color: var(--md-text-muted);
+      font-size: 0.875rem;
+    }
+    footer a {
+      color: var(--md-bright-green);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; color: var(--md-gaze-yellow); }
   </style>
 </head>
 <body>
@@ -91,7 +186,7 @@
       <div class="container">
         A <a href="https://hartle.tech">HARTLE.TECH</a> research project · Apache 2.0 · <a href="mailto:contact@hartle.tech">contact@hartle.tech</a>
         ·
-        <span style="color: #9CA3AF;">Tailnet members can also access the <a href="/wiki/">internal wiki</a>.</span>
+        <span style="color: var(--md-text-muted);">Tailnet members can also access the <a href="/wiki/">internal wiki</a>.</span>
       </div>
     </footer>
   </div>

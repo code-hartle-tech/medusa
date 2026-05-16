@@ -1,70 +1,84 @@
-name: Medusa v1
-version: 1
-style: research_tool_light
+name: Medusa v2
+version: 2
+style: venom_research_tool_dark
+revised: 2026-05-16
+revision_note: |
+  Operator delivered new canonical palette. The v1 light_only direction is
+  superseded: Medusa becomes the FIRST DARK-THEME product in the HARTLE.TECH
+  portfolio. The mythology stays (the gaze, the gorgon, the snakes) — the
+  palette swings from research-tool friendly green to venomous green +
+  hazard-yellow on charcoal.
 
 colors:
-  primary_serpent:
-    hex: "#2DAB66"
-    rgb: "45, 171, 102"
-    note: "snake-green; primary CTA + brand mark"
-  serpent_deep:
-    hex: "#0F7A40"
-    rgb: "15, 122, 64"
-    note: "hover / active variant of primary"
-  serpent_soft:
-    hex: "#E8F7EE"
-    rgb: "232, 247, 238"
-    note: "tinted backgrounds, callouts"
-  gaze_amber:
-    hex: "#F59E0B"
-    rgb: "245, 158, 11"
-    note: "the petrifying eye; warnings + highlights"
-  gaze_amber_soft:
-    hex: "#FEF3C7"
-    rgb: "254, 243, 199"
-    note: "amber backgrounds"
-  stone_gray:
-    hex: "#6B7280"
-    rgb: "107, 114, 128"
-    note: "secondary text, dividers"
-  stone_light:
-    hex: "#F3F4F6"
-    rgb: "243, 244, 246"
-    note: "surface background"
-  mortal_ink:
-    hex: "#0F1419"
-    rgb: "15, 20, 25"
-    note: "primary text — slightly cooler than pure black"
-  white:
-    hex: "#FFFFFF"
-    rgb: "255, 255, 255"
-  mirror_silver:
-    hex: "#E5E7EB"
-    rgb: "229, 231, 235"
-    note: "Perseus's mirror; subtle border + chrome"
+  gaze_yellow:
+    hex: "#F2E749"
+    rgb: "242, 231, 73"
+    note: "the petrifying eye; primary accent (CTAs, snake-eye highlight, hazard)"
+  hood_charcoal:
+    hex: "#2C2B30"
+    rgb: "44, 43, 48"
+    note: "primary background (dark theme base — the gorgon's hood / lair)"
+  deep_teal:
+    hex: "#02735E"
+    rgb: "2, 115, 94"
+    note: "venom; secondary brand, depth, hover-darker"
+  mid_green:
+    hex: "#04BF55"
+    rgb: "4, 191, 85"
+    note: "scale-green; primary interactive (links, primary action)"
+  bright_green:
+    hex: "#04D94F"
+    rgb: "4, 217, 79"
+    note: "peak venom highlight, glow, hero gradient endpoint"
+
+  # Charcoal ramp — extended for surfaces (generated from hood_charcoal)
+  surface:
+    hex: "#36353B"
+    note: "elevated cards, panel backgrounds"
+  surface_2:
+    hex: "#42414A"
+    note: "hover / pressed surfaces"
+  divider:
+    hex: "#4A4951"
+    note: "borders, dividers"
+  text_primary:
+    hex: "#E6E5EA"
+    note: "body text on charcoal — off-white, not pure white (less harsh)"
+  text_secondary:
+    hex: "#B8B6BF"
+    note: "secondary text — taglines, captions"
+  text_muted:
+    hex: "#7A7980"
+    note: "muted text — footer, metadata"
 
 typography:
-  display:    "Space Grotesk"   # matches dumpsock for portfolio cohesion
+  display:    "Space Grotesk"   # matches dumpsock + tools.hartle.tech for portfolio cohesion
   body:       "Inter"
   mono:       "JetBrains Mono"
 
 mascot:
   silhouette: gorgon_head_front_facing
-  outline: thick_black
+  outline: thick_bright_green_on_charcoal   # was: thick_black
   eye_count: 1_prominent
+  eye_color: gaze_yellow
   snake_count: 5_to_7_distinct
-  body: stone_gray_with_green_tint
+  body: deep_teal_with_bright_green_highlights   # was: stone_gray_with_green_tint
   expression: cute_focused_alert
-  device_in_view: yes_small_handheld_or_spectrum
   avoid:
     - realistic_horror
     - sexualized_rendering
     - blood_or_severed_head
-    - cyberpunk_neon
+    - cyberpunk_neon       # we LEAN venom not neon — distinguish from generic dark themes
     - literal_modern_antenna_shapes
 
 ui:
-  theme: light_only
-  cta_style: bold_serpent_green
-  cards: rounded_16px
-  vibe: research_tool_friendly_mythological
+  theme: dark_only          # was: light_only
+  cta_style: bright_green_pill_on_charcoal
+  cards: rounded_16px_with_subtle_glow_on_hover
+  vibe: venom_research_tool_dangerous_yet_friendly
+
+# Migration notes for future tooling:
+#   - VitePress configs: appearance: 'force-dark' (was: false; we want forced dark, not toggleable)
+#   - meta theme-color: #2C2B30 (was: #2DAB66)
+#   - All callouts/warning chrome: gaze_yellow on translucent yellow background
+#   - All hero gradients: linear-gradient(120deg, bright_green 30%, gaze_yellow 100%)

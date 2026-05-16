@@ -1,65 +1,84 @@
-/* Medusa brand theme — external public docs (pixel-fidelity to brand_tokens.yaml).
+/* Medusa brand theme — external public docs.
  *
- * Canonical source: ../../../assets/brand/brand_tokens.yaml (v1, research_tool_light).
- * NOT to be edited by feel — change brand_tokens.yaml first, then mirror here.
+ * Canonical palette (operator-confirmed 2026-05-16):
+ *   #F2E749  gaze yellow      — primary accent (CTAs, snake-eye highlight, hazard)
+ *   #2C2B30  hood charcoal    — primary background (DARK theme)
+ *   #02735E  deep teal/venom  — secondary brand, depth, hover-darker
+ *   #04BF55  mid green        — interactive (links, primary action)
+ *   #04D94F  bright green     — peak highlight, glow, hero gradient endpoint
  *
- * Rule: theme: light_only. The v1 brief explicitly forbids cyberpunk/dark drift. */
+ * Medusa is the FIRST dark-theme product in the HARTLE.TECH portfolio.
+ * The earlier light/serpent-green tokens (v1_brief.md) are superseded.
+ * See memory: medusa_brand_palette.md.
+ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  /* ── Canonical brand tokens (mirror of brand_tokens.yaml) ────────────── */
-  --md-primary-serpent: #2DAB66;
-  --md-serpent-deep:    #0F7A40;
-  --md-serpent-soft:    #E8F7EE;
-  --md-gaze-amber:      #F59E0B;
-  --md-gaze-amber-soft: #FEF3C7;
-  --md-stone-gray:      #6B7280;
-  --md-stone-light:     #F3F4F6;
-  --md-mortal-ink:      #0F1419;
-  --md-white:           #FFFFFF;
-  --md-mirror-silver:   #E5E7EB;
+  /* ── Canonical brand tokens (mirror of medusa_brand_palette.md) ──────── */
+  --md-gaze-yellow:      #F2E749;
+  --md-gaze-yellow-soft: rgba(242, 231, 73, 0.15);
+  --md-hood-charcoal:    #2C2B30;
+  --md-deep-teal:        #02735E;
+  --md-mid-green:        #04BF55;
+  --md-bright-green:     #04D94F;
 
-  /* ── VitePress overrides — serpent green is the brand color ──────────── */
-  --vp-c-brand-1:    var(--md-primary-serpent);
-  --vp-c-brand-2:    var(--md-serpent-deep);
-  --vp-c-brand-3:    var(--md-serpent-deep);
-  --vp-c-brand-soft: var(--md-serpent-soft);
+  /* Charcoal extended ramp — generated for surfaces/dividers/text */
+  --md-surface:          #36353B;   /* elevated cards, panel backgrounds */
+  --md-surface-2:        #42414A;   /* hover / pressed surfaces */
+  --md-divider:          #4A4951;   /* borders */
+  --md-text-primary:     #E6E5EA;   /* body text on charcoal */
+  --md-text-secondary:   #B8B6BF;
+  --md-text-muted:       #7A7980;
 
-  --vp-c-bg:         var(--md-white);
-  --vp-c-bg-alt:     var(--md-stone-light);
-  --vp-c-bg-elv:     var(--md-white);
-  --vp-c-text-1:     var(--md-mortal-ink);
-  --vp-c-text-2:     #374151;
-  --vp-c-text-3:     var(--md-stone-gray);
-  --vp-c-divider:    var(--md-mirror-silver);
-  --vp-c-gutter:     var(--md-stone-light);
+  /* ── VitePress overrides — green is primary brand on dark ────────────── */
+  --vp-c-brand-1:    var(--md-mid-green);
+  --vp-c-brand-2:    var(--md-bright-green);
+  --vp-c-brand-3:    var(--md-deep-teal);
+  --vp-c-brand-soft: rgba(4, 191, 85, 0.16);
 
-  /* CTAs: bold serpent green */
-  --vp-button-brand-bg:           var(--md-primary-serpent);
-  --vp-button-brand-hover-bg:     var(--md-serpent-deep);
-  --vp-button-brand-active-bg:    #0A5A30;
-  --vp-button-brand-border:       var(--md-primary-serpent);
-  --vp-button-brand-hover-border: var(--md-serpent-deep);
-  --vp-button-brand-text:         var(--md-white);
+  --vp-c-bg:         var(--md-hood-charcoal);
+  --vp-c-bg-alt:     var(--md-surface);
+  --vp-c-bg-elv:     var(--md-surface);
+  --vp-c-bg-soft:    var(--md-surface);
+  --vp-c-text-1:     var(--md-text-primary);
+  --vp-c-text-2:     var(--md-text-secondary);
+  --vp-c-text-3:     var(--md-text-muted);
+  --vp-c-divider:    var(--md-divider);
+  --vp-c-gutter:     var(--md-hood-charcoal);
+  --vp-c-border:     var(--md-divider);
 
-  --vp-button-alt-bg:             var(--md-white);
-  --vp-button-alt-hover-bg:       var(--md-stone-light);
-  --vp-button-alt-border:         var(--md-mortal-ink);
-  --vp-button-alt-text:           var(--md-mortal-ink);
+  /* CTAs: bright green primary, yellow for the secondary "gaze" highlight */
+  --vp-button-brand-bg:           var(--md-mid-green);
+  --vp-button-brand-hover-bg:     var(--md-bright-green);
+  --vp-button-brand-active-bg:    var(--md-deep-teal);
+  --vp-button-brand-border:       var(--md-mid-green);
+  --vp-button-brand-hover-border: var(--md-bright-green);
+  --vp-button-brand-text:         var(--md-hood-charcoal);   /* dark text on bright button — high contrast */
+
+  --vp-button-alt-bg:             transparent;
+  --vp-button-alt-hover-bg:       var(--md-surface);
+  --vp-button-alt-border:         var(--md-divider);
+  --vp-button-alt-hover-border:   var(--md-text-primary);
+  --vp-button-alt-text:           var(--md-text-primary);
 
   /* Typography per brand spec */
   --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --vp-font-family-heading: 'Space Grotesk', 'Inter', sans-serif;
 
-  --vp-home-hero-name-color: var(--md-mortal-ink);
-  --vp-home-hero-name-background: transparent;
-  --vp-c-default-soft: rgba(45, 171, 102, 0.04);
+  /* Hero name — bright green glow, "the gaze" energy */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, var(--md-bright-green) 30%, var(--md-gaze-yellow) 100%);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--md-deep-teal) 50%, var(--md-mid-green) 50%);
+  --vp-home-hero-image-filter: blur(48px);
+
+  --vp-c-default-soft: rgba(4, 191, 85, 0.08);
+
+  color-scheme: dark;
 }
 
-/* No dark mode — brand v1_brief.md forbids dark drift. appearance: false in config.ts
- * also disables the toggle entirely. Belt + suspenders here in case CSS picks .dark up. */
+/* No light toggle — config has appearance:false. The whole site is dark. */
 
 /* ── Type ───────────────────────────────────────────────────────────── */
 h1, h2, h3,
@@ -68,6 +87,7 @@ h1, h2, h3,
   font-family: var(--vp-font-family-heading);
   letter-spacing: -0.02em;
   font-weight: 700;
+  color: var(--md-text-primary);
 }
 
 .VPHero .name {
@@ -78,33 +98,41 @@ h1, h2, h3,
 .VPHero .text {
   font-weight: 600;
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  color: var(--md-mortal-ink);
+  color: var(--md-text-primary);
 }
 
 .VPHero .tagline {
-  color: #374151;
+  color: var(--md-text-secondary);
   font-size: 1.0625rem;
   line-height: 1.55;
   max-width: 38em;
 }
 
-/* Feature cards — soft, with gaze-amber hover-glow hint */
+/* Feature cards — surface elevation + green hover-glow */
 .VPFeature {
   border-radius: 16px;
-  border: 1px solid var(--vp-c-divider);
-  background: var(--md-white);
+  border: 1px solid var(--md-divider);
+  background: var(--md-surface);
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
 .VPFeature:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(45, 171, 102, 0.10);
-  border-color: rgba(45, 171, 102, 0.30);
+  box-shadow: 0 10px 28px rgba(4, 217, 79, 0.18);
+  border-color: rgba(4, 217, 79, 0.40);
 }
 
 .VPFeature .icon {
-  background: var(--md-serpent-soft);
+  background: rgba(4, 191, 85, 0.14);
   border-radius: 12px;
+}
+
+.VPFeature .title {
+  color: var(--md-text-primary);
+}
+
+.VPFeature .details {
+  color: var(--md-text-secondary);
 }
 
 .VPButton.brand {
@@ -126,10 +154,67 @@ h1, h2, h3,
   font-weight: 600;
 }
 
-/* Lawful-use callout — gaze-amber (the petrifying eye) */
+.VPNavBarMenuLink {
+  color: var(--md-text-secondary);
+}
+
+.VPNavBarMenuLink:hover, .VPNavBarMenuLink.active {
+  color: var(--md-bright-green);
+}
+
+/* Sidebar links */
+.VPSidebarItem .text,
+.VPSidebarItem.is-link .item .text {
+  color: var(--md-text-secondary);
+}
+
+.VPSidebarItem.is-link .item:hover .text,
+.VPSidebarItem.is-active .text {
+  color: var(--md-bright-green);
+}
+
+/* Inline links in body text */
+.vp-doc a {
+  color: var(--md-bright-green);
+  text-decoration-color: rgba(4, 217, 79, 0.4);
+}
+
+.vp-doc a:hover {
+  color: var(--md-gaze-yellow);
+  text-decoration-color: var(--md-gaze-yellow);
+}
+
+/* Inline + block code — surface elevation */
+.vp-doc code {
+  background: var(--md-surface);
+  color: var(--md-gaze-yellow);
+  border: 1px solid var(--md-divider);
+}
+
+.vp-doc pre {
+  background: #1F1E22;
+  border: 1px solid var(--md-divider);
+}
+
+/* Tables on charcoal */
+.vp-doc table {
+  border-color: var(--md-divider);
+}
+
+.vp-doc th, .vp-doc tr {
+  background: var(--md-surface);
+  border-color: var(--md-divider);
+}
+
+.vp-doc tr:nth-child(2n) {
+  background: var(--md-hood-charcoal);
+}
+
+/* Lawful-use callout — gaze-yellow on charcoal (the petrifying eye) */
 .gaze-callout {
-  border-left: 4px solid var(--md-gaze-amber);
-  background: var(--md-gaze-amber-soft);
+  border-left: 4px solid var(--md-gaze-yellow);
+  background: var(--md-gaze-yellow-soft);
+  color: var(--md-text-primary);
   padding: 1rem 1.25rem;
   border-radius: 0 8px 8px 0;
   margin: 1.5rem 0;
@@ -137,16 +222,42 @@ h1, h2, h3,
   line-height: 1.55;
 }
 
-/* HR with serpent fade */
+.gaze-callout strong {
+  color: var(--md-gaze-yellow);
+}
+
+/* HR with green-yellow venom-gradient */
 hr {
   border: none;
   height: 1px;
   background: linear-gradient(to right,
     transparent 0%,
-    rgba(45, 171, 102, 0.15) 20%,
-    var(--md-primary-serpent) 50%,
-    rgba(45, 171, 102, 0.15) 80%,
+    rgba(4, 191, 85, 0.20) 20%,
+    var(--md-bright-green) 45%,
+    var(--md-gaze-yellow) 55%,
+    rgba(242, 231, 73, 0.20) 80%,
     transparent 100%);
-  opacity: 0.5;
+  opacity: 0.6;
   margin: 2rem 0;
+}
+
+/* Custom blocks (info, tip, warning, danger) — re-color on dark */
+.vp-doc .custom-block.info {
+  border-color: var(--md-deep-teal);
+  background: rgba(2, 115, 94, 0.12);
+}
+
+.vp-doc .custom-block.tip {
+  border-color: var(--md-bright-green);
+  background: rgba(4, 217, 79, 0.10);
+}
+
+.vp-doc .custom-block.warning {
+  border-color: var(--md-gaze-yellow);
+  background: var(--md-gaze-yellow-soft);
+}
+
+.vp-doc .custom-block.danger {
+  border-color: #E94545;
+  background: rgba(233, 69, 69, 0.10);
 }

@@ -12,8 +12,10 @@ export default defineConfig({
   lang: 'en-US',
   cleanUrls: true,
   base: '/docs/',
-  // Brand spec (assets/brand/v1_brief.md): light-only.
-  appearance: false,
+  // Brand spec v2 (assets/brand/brand_tokens.yaml v2, 2026-05-16):
+  // dark-only — venom-snake palette on charcoal. Replaces the earlier
+  // light-only v1 direction.
+  appearance: 'force-dark',
 
   // Cross-references to /wiki/* (the internal site, separate build) won't
   // resolve from a build of /docs/ alone — those links are intentional
@@ -25,7 +27,7 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/docs/medusa-mascot.svg' }],
-    ['meta', { name: 'theme-color', content: '#2DAB66' }],
+    ['meta', { name: 'theme-color', content: '#2C2B30' }],
     ['meta', { property: 'og:title', content: 'Medusa — Embedded wireless recon' }],
     ['meta', { property: 'og:description', content: 'A defensive research tool for auditing the radio surface of networks you own. HARTLE.TECH.' }],
   ],
