@@ -1,0 +1,44 @@
+# Build outputs
+build/
+.pio/
+.pioenvs/
+.piolibdeps/
+*.elf
+*.bin
+*.uf2
+*.hex
+*.map
+
+# RuFlo runtime state (regenerated on every run; not source)
+.claude-flow/
+.swarm/
+ruvector.db
+*.ruvector.db
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Secrets — never appears here, but belt-and-suspenders
+.env
+.env.*
+*.key
+*.pem
+
+# Per-project Claude state (matches HARTLE.TECH convention)
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/settings.local.json.bak
+
+# Node-side (docs/, when scaffolded)
+node_modules/
+docs/external/.vitepress/dist/
+docs/external/.vitepress/cache/
+
+# Local hardware tooling artifacts
+*.gerber.zip
+*.kicad_pcb-bak
+fp-info-cache

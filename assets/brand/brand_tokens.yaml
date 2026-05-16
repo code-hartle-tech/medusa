@@ -1,0 +1,70 @@
+name: Medusa v1
+version: 1
+style: research_tool_light
+
+colors:
+  primary_serpent:
+    hex: "#2DAB66"
+    rgb: "45, 171, 102"
+    note: "snake-green; primary CTA + brand mark"
+  serpent_deep:
+    hex: "#0F7A40"
+    rgb: "15, 122, 64"
+    note: "hover / active variant of primary"
+  serpent_soft:
+    hex: "#E8F7EE"
+    rgb: "232, 247, 238"
+    note: "tinted backgrounds, callouts"
+  gaze_amber:
+    hex: "#F59E0B"
+    rgb: "245, 158, 11"
+    note: "the petrifying eye; warnings + highlights"
+  gaze_amber_soft:
+    hex: "#FEF3C7"
+    rgb: "254, 243, 199"
+    note: "amber backgrounds"
+  stone_gray:
+    hex: "#6B7280"
+    rgb: "107, 114, 128"
+    note: "secondary text, dividers"
+  stone_light:
+    hex: "#F3F4F6"
+    rgb: "243, 244, 246"
+    note: "surface background"
+  mortal_ink:
+    hex: "#0F1419"
+    rgb: "15, 20, 25"
+    note: "primary text — slightly cooler than pure black"
+  white:
+    hex: "#FFFFFF"
+    rgb: "255, 255, 255"
+  mirror_silver:
+    hex: "#E5E7EB"
+    rgb: "229, 231, 235"
+    note: "Perseus's mirror; subtle border + chrome"
+
+typography:
+  display:    "Space Grotesk"   # matches dumpsock for portfolio cohesion
+  body:       "Inter"
+  mono:       "JetBrains Mono"
+
+mascot:
+  silhouette: gorgon_head_front_facing
+  outline: thick_black
+  eye_count: 1_prominent
+  snake_count: 5_to_7_distinct
+  body: stone_gray_with_green_tint
+  expression: cute_focused_alert
+  device_in_view: yes_small_handheld_or_spectrum
+  avoid:
+    - realistic_horror
+    - sexualized_rendering
+    - blood_or_severed_head
+    - cyberpunk_neon
+    - literal_modern_antenna_shapes
+
+ui:
+  theme: light_only
+  cta_style: bold_serpent_green
+  cards: rounded_16px
+  vibe: research_tool_friendly_mythological
