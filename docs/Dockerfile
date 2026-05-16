@@ -29,8 +29,8 @@ COPY --from=build /staging/${VARIANT}/ /srv/
 COPY Caddyfile /etc/caddy/Caddyfile
 
 USER nobody
-EXPOSE 80
+EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s --start-period=2s \
-  CMD wget --quiet --spider http://127.0.0.1:80/ || exit 1
+  CMD wget --quiet --spider http://127.0.0.1:8080/ || exit 1
 
 CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
