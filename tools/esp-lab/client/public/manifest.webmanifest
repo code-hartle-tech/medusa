@@ -1,0 +1,39 @@
+{
+  "name": "Medusa — radio security workspace",
+  "short_name": "Medusa",
+  "id": "tech.hartle.medusa.companion",
+  "description": "Local companion for a Medusa radio sensor. Sets up the board, runs authorized discovery surveys, and reviews evidence. Everything stays on your device and the sensor.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#19181C",
+  "theme_color": "#19181C",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# esp-hw — build artifacts, caches, and generated/target files
+esp-hw/**/build/
+esp-hw/**/__pycache__/
+# Operator-held research draft; explicitly outside the public Medusa boundary.
+esp-hw/medusa_karma/
+__pycache__/
+**/medusa_target.h
+*.orig-medusa
+*.orig
+
+# esp-lab — node deps and client build output
+esp-lab/**/node_modules/
+esp-lab/client/dist/
+esp-lab/client/*.tsbuildinfo
+.env
+*.local

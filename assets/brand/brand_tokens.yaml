@@ -1,0 +1,84 @@
+name: Medusa v2
+version: 2
+style: venom_research_tool_dark
+revised: 2026-05-16
+revision_note: |
+  Operator delivered new canonical palette. The v1 light_only direction is
+  superseded: Medusa becomes the FIRST DARK-THEME product in the HARTLE.TECH
+  portfolio. The mythology stays (the gaze, the gorgon, the snakes) — the
+  palette swings from research-tool friendly green to venomous green +
+  hazard-yellow on charcoal.
+
+colors:
+  gaze_yellow:
+    hex: "#F2E749"
+    rgb: "242, 231, 73"
+    note: "the petrifying eye; primary accent (CTAs, snake-eye highlight, hazard)"
+  hood_charcoal:
+    hex: "#2C2B30"
+    rgb: "44, 43, 48"
+    note: "primary background (dark theme base — the gorgon's hood / lair)"
+  deep_teal:
+    hex: "#02735E"
+    rgb: "2, 115, 94"
+    note: "venom; secondary brand, depth, hover-darker"
+  mid_green:
+    hex: "#04BF55"
+    rgb: "4, 191, 85"
+    note: "scale-green; primary interactive (links, primary action)"
+  bright_green:
+    hex: "#04D94F"
+    rgb: "4, 217, 79"
+    note: "peak venom highlight, glow, hero gradient endpoint"
+
+  # Charcoal ramp — extended for surfaces (generated from hood_charcoal)
+  surface:
+    hex: "#36353B"
+    note: "elevated cards, panel backgrounds"
+  surface_2:
+    hex: "#42414A"
+    note: "hover / pressed surfaces"
+  divider:
+    hex: "#4A4951"
+    note: "borders, dividers"
+  text_primary:
+    hex: "#E6E5EA"
+    note: "body text on charcoal — off-white, not pure white (less harsh)"
+  text_secondary:
+    hex: "#B8B6BF"
+    note: "secondary text — taglines, captions"
+  text_muted:
+    hex: "#7A7980"
+    note: "muted text — footer, metadata"
+
+typography:
+  display:    "Space Grotesk"   # matches dumpsock + tools.hartle.tech for portfolio cohesion
+  body:       "Inter"
+  mono:       "JetBrains Mono"
+
+mascot:
+  silhouette: gorgon_head_front_facing
+  outline: thick_bright_green_on_charcoal   # was: thick_black
+  eye_count: 1_prominent
+  eye_color: gaze_yellow
+  snake_count: 5_to_7_distinct
+  body: deep_teal_with_bright_green_highlights   # was: stone_gray_with_green_tint
+  expression: cute_focused_alert
+  avoid:
+    - realistic_horror
+    - sexualized_rendering
+    - blood_or_severed_head
+    - cyberpunk_neon       # we LEAN venom not neon — distinguish from generic dark themes
+    - literal_modern_antenna_shapes
+
+ui:
+  theme: dark_only          # was: light_only
+  cta_style: bright_green_pill_on_charcoal
+  cards: rounded_16px_with_subtle_glow_on_hover
+  vibe: venom_research_tool_dangerous_yet_friendly
+
+# Migration notes for future tooling:
+#   - VitePress configs: appearance: 'force-dark' (was: false; we want forced dark, not toggleable)
+#   - meta theme-color: #2C2B30 (was: #2DAB66)
+#   - All callouts/warning chrome: gaze_yellow on translucent yellow background
+#   - All hero gradients: linear-gradient(120deg, bright_green 30%, gaze_yellow 100%)

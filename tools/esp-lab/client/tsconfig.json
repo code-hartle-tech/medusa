@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["vite/client"]
+  },
+  "include": ["src", "vite.config.ts"],
+  // The *.test.ts files run under `node --test`, not in the browser bundle.
+  // They import node: builtins the app deliberately has no types for, so
+  // typechecking them here would either fail or force @types/node into the
+  // app's type surface. `npm test` is what checks them.
+  "exclude": ["src/**/*.test.ts"]
+}

@@ -1,0 +1,10 @@
+# Belt-and-suspenders Disallow for /wiki/* — the path is already
+# Caddy-gated to tailnet (it 404s for public clients), but if a search
+# engine somehow encountered a /wiki/ URL (e.g. via leaked link), this
+# tells them not to index. Defense in depth.
+
+User-agent: *
+Disallow: /wiki/
+
+# Allow everything else — public docs are meant to be indexed.
+Allow: /

@@ -1,0 +1,23 @@
+#!medusa-plugin 1
+# Does the network recover? Alternate short bursts of pressure with quiet
+# windows and watch what the estate does in between.
+#
+# Declares tx, so the operator sees that before running it. Every tx step
+# still passes the firmware TX guard: session, scope, rate and stop all
+# apply, and a refusal stops this program rather than continuing.
+id resilience-check
+name Recovery Under Pressure
+author hartle-tech
+version 1
+needs rx,tx,storage
+
+> log baseline observation
+> channel 6
+> scan 5000
+> repeat 3
+>   log applying pressure
+>   tx 0 200
+>   log observing recovery
+>   scan 8000
+> end
+> log resilience check complete

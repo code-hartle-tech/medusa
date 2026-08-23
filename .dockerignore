@@ -1,0 +1,30 @@
+# Build context for docs/Dockerfile is the repository root (the internal
+# variant's source is the top-level wiki/ realm). Everything the docs and wiki
+# VitePress builds do not need is excluded here — without this the context
+# carries the firmware build tree and every node_modules, several hundred MB
+# that never reach the image.
+
+.git/
+.github/
+.claude/
+
+# Dependencies are installed inside the image from the lockfiles.
+**/node_modules/
+
+# Firmware, labs, hardware tooling — not part of any docs variant.
+code/
+tools/
+assets/
+other/
+
+# Generated build output and caches.
+**/.vitepress/dist/
+**/.vitepress/cache/
+graphify-out/
+**/__pycache__/
+**/.pio/
+**/dist/
+
+# Local editor / OS noise.
+.DS_Store
+**/*.log

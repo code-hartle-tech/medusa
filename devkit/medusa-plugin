@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+#
+# medusa-plugin — the Medusa plugin devkit.
+#
+#   medusa-plugin new <id>      scaffold a plugin you can run immediately
+#   medusa-plugin lint <file>   validate it and dry-run what it would do
+#   medusa-plugin examples      list the bundled examples
+#
+# The validator is compiled from the firmware's own parser, so "lint says it's
+# fine" and "the device accepts it" cannot drift apart. It builds on first use
+# and is cached.
+#
+# Nothing here touches hardware, opens a radio, or transmits.
+
+set -euo pipefail
+
+DEVKIT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO="$(cd "$DEVKIT/.." && pwd)"
+CACHE="${MEDUSA_DEVKIT_CACHE:-$DEVKIT/.cache}"
+LINTER="$CACHE/medusa-plugin-lint"
+
+die() { printf 'error: %s\n' "$*" >&2; exit 1; }
+
+build_linter() {
+    mkdir -p "$CACHE"
+    local sources=(
+        "$REPO/tools/esp-hw/medusa_companion/medusa_plugin.c"
+        "$DEVKIT/lint/main.c"
+    )
+    # Rebuild only when something is newer than the binary.
+    if [[ -x "$LINTER" ]]; then
+        local stale=0
+        for s in "${sources[@]}"; do [[ "$s" -nt "$LINTER" ]] && stale=1; done
+        [[ $stale -eq 0 ]] && return 0
+    fi
+    cc -std=c99 -Wall -Wextra -O2 "${sources[@]}" -o "$LINTER" \
+        || die "could not build the validator (is a C compiler installed?)"
+}
+
+cmd_new() {
+    local id="${1:-}"
+    [[ -n "$id" ]] || die "usage: medusa-plugin new <id>"
+    [[ "$id" =~ ^[a-z0-9][a-z0-9-]*$ ]] || die "id should be lowercase letters, digits and dashes"
+    local out="${id}.medusa"
+    [[ -e "$out" ]] && die "$out already exists"
+
+    cat > "$out" <<PLUGIN
+#!medusa-plugin 1
+# ${id} — describe what this does in one line.
+#
+# Declare only what you actually use. A plugin that does not declare tx
+# cannot contain a tx step at all, and the companion shows this list to the
+# operator before running you.
+id ${id}
+name ${id}
+author your-name-here
+version 1
+needs rx
+
+> log ${id} starting
+> sweep 1 13 250
+> log ${id} done
+PLUGIN
+    printf 'created %s\n\n' "$out"
+    printf 'try it:\n  medusa-plugin lint %s\n\n' "$out"
+    printf 'steps you can use:\n'
+    printf '  log <text>                 note something in the run log\n'
+    printf '  channel <1-14>             park on one channel\n'
+    printf '  sweep <from> <to> <ms>     hop a range, dwelling on each\n'
+    printf '  scan <ms>                  listen where you are\n'
+    printf '  wait <ms>                  do nothing\n'
+    printf '  tx <profile> <count>       transmit (needs "tx", passes the guard)\n'
+    printf '  repeat <n> ... end         loop, up to 4 deep\n'
+}
+
+cmd_lint() {
+    local file="${1:-}"
+    [[ -n "$file" ]] || die "usage: medusa-plugin lint <file.medusa>"
+    [[ -f "$file" ]] || die "no such file: $file"
+    build_linter
+    "$LINTER" "$file" "${2:-}"
+}
+
+cmd_examples() {
+    printf 'bundled examples in %s/examples:\n\n' "$DEVKIT"
+    for f in "$DEVKIT"/examples/*.medusa; do
+        [[ -e "$f" ]] || continue
+        local name desc
+        name="$(basename "$f")"
+        desc="$(grep -m1 '^name ' "$f" | cut -d' ' -f2- || true)"
+        printf '  %-26s %s\n' "$name" "${desc:-}"
+    done
+    printf '\nlint one:\n  medusa-plugin lint %s/examples/<file>\n' "$DEVKIT"
+}
+
+case "${1:-}" in
+    new)      shift; cmd_new "$@" ;;
+    lint)     shift; cmd_lint "$@" ;;
+    examples) shift; cmd_examples "$@" ;;
+    *)
+        cat <<USAGE
+medusa-plugin — write capabilities for Medusa without reflashing it
+
+  medusa-plugin new <id>       scaffold a plugin you can run immediately
+  medusa-plugin lint <file>    validate it and dry-run what it would do
+  medusa-plugin examples       list the bundled examples
+
+The validator is the firmware's own parser, compiled for your machine, so
+what it accepts is exactly what the device accepts.
+USAGE
+        exit 1
+        ;;
+esac

@@ -1,0 +1,70 @@
+# Build outputs
+build/
+.pio/
+.pioenvs/
+.piolibdeps/
+*.elf
+*.bin
+*.uf2
+*.hex
+*.map
+
+# RuFlo runtime state (regenerated on every run; not source)
+.claude-flow/
+.swarm/
+.hive-mind/
+ruvector.db
+*.ruvector.db
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python bytecode/cache
+__pycache__/
+*.py[cod]
+
+# Secrets — never appears here, but belt-and-suspenders
+.env
+.env.*
+*.key
+*.pem
+
+# Per-project Claude state (matches HARTLE.TECH convention)
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/settings.local.json.bak
+
+# VitePress docs site
+docs/node_modules/
+docs/external/.vitepress/dist/
+docs/external/.vitepress/cache/
+# After the docs/internal → wiki migration (2026-05-23), the private wiki build
+# lives under wiki/.vitepress/dist/ instead of docs/internal/.vitepress/dist/.
+wiki/.vitepress/dist/
+wiki/.vitepress/cache/
+wiki/node_modules/
+# /docs/package-lock.json — intentionally NOT ignored; committed for CI reproducibility
+
+# Local hardware tooling artifacts
+*.gerber.zip
+*.kicad_pcb-bak
+fp-info-cache
+
+# graphify generated knowledge graph (regenerate with `graphify update .`)
+graphify-out/
+
+# Swift Package Manager build output (companion/ios/MedusaKit)
+companion/**/.build/
+companion/**/.swiftpm/
+
+# devkit validator build cache
+devkit/.cache/
+
+# Generated per-build target header. Deleted after every build, but a build
+# killed part-way can leave one behind — and since the active CSI mode puts a
+# Wi-Fi password in it, "usually deleted" is not good enough to rely on.
+tools/esp-hw/*/medusa_target.h

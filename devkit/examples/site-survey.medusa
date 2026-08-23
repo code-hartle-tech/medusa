@@ -1,0 +1,15 @@
+#!medusa-plugin 1
+# A walking survey: hop the whole 2.4 GHz band repeatedly, dwelling long
+# enough on each channel to catch a beacon interval, so you can walk a floor
+# and come back with coverage rather than a single snapshot.
+id site-survey
+name Site Survey Sweep
+author hartle-tech
+version 1
+needs rx,storage
+
+> log site survey: 6 passes over channels 1-13
+> repeat 6
+>   sweep 1 13 400
+> end
+> log site survey complete

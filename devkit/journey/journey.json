@@ -1,0 +1,57 @@
+{
+  "id": "medusa-first-survey",
+  "title": "From nothing to evidence",
+  "summary": "Six steps that end with a defensible record of a network you are allowed to assess. Each one names something to look at, not just something to click.",
+  "steps": [
+    {
+      "id": "identify",
+      "title": "Know which radio you are holding",
+      "goal": "Confirm the attached board by its USB serial and VID/PID before anything else.",
+      "why": "A port name is not an identity. Boards move between ports, and a survey attributed to the wrong device is worse than no survey — you cannot tell later which one produced it.",
+      "surface": "devices",
+      "look_for": "The device row shows a stable serial, not just a /dev path."
+    },
+    {
+      "id": "listen",
+      "title": "Listen before you touch anything",
+      "goal": "Run a passive sweep and watch access points appear.",
+      "why": "Everything downstream is an argument about what is there. Passive observation is the only step that cannot change what you are measuring.",
+      "surface": "plugins",
+      "plugin": "site-survey.medusa",
+      "look_for": "Channel changes and dwell times in the dry run, then real BSSIDs in Observe."
+    },
+    {
+      "id": "read-the-air",
+      "title": "Read what the advertisement actually says",
+      "goal": "Open a Bluetooth device and read its raw manufacturer payload, not only the vendor guess.",
+      "why": "A vendor name is inferred from three bytes. The payload is the evidence. Learning to distrust the inference is most of what separates a survey from a screenshot.",
+      "surface": "observe",
+      "look_for": "The byte string under the vendor column, and whether the guess is even plausible."
+    },
+    {
+      "id": "scope",
+      "title": "Write down what you are allowed to touch",
+      "goal": "Set the allow-list to the BSSIDs you actually have permission to assess.",
+      "why": "Scope decided in advance is a control. Scope decided while looking at a target is a rationalisation. The firmware enforces whichever one you wrote down.",
+      "surface": "plugins",
+      "look_for": "A session grant reporting the scope, rate and duration actually in force."
+    },
+    {
+      "id": "pressure",
+      "title": "Ask whether it recovers",
+      "goal": "Dry-run a recovery test, read every step, and only then decide whether to run it.",
+      "why": "The dry run tells you how many frames it would emit before a single one goes out. If that number surprises you, you were not ready to run it.",
+      "surface": "plugins",
+      "plugin": "resilience-check.medusa",
+      "look_for": "The frame total, and the tx capability declared on the card before you opened it."
+    },
+    {
+      "id": "evidence",
+      "title": "Leave with something you can hand over",
+      "goal": "Export a posture report, pseudonymised, and read it as the recipient would.",
+      "why": "The artifact outlives the session. Pseudonymised means you can share the finding without sharing the estate, and the report says on its face that its identifiers are not real.",
+      "surface": "artifacts",
+      "look_for": "The banner explaining the identifiers are pseudonyms, and that the findings are unchanged."
+    }
+  ]
+}

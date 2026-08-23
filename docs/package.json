@@ -1,0 +1,16 @@
+{
+  "name": "medusa-docs",
+  "version": "0.1.0",
+  "description": "Medusa public docs (medusa.hartle.tech/docs) + the static landing page. The tailnet-only internal wiki is a separate VitePress site with its own package at ../wiki.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "external:dev":     "vitepress dev external",
+    "external:build":   "vitepress build external",
+    "external:preview": "vitepress preview external",
+    "build":            "npm run external:build"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

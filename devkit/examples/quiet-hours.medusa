@@ -1,0 +1,15 @@
+#!medusa-plugin 1
+# A long unattended watch: sweep slowly, wait, repeat. Written to be left
+# running rather than watched.
+id quiet-hours
+name Quiet Hours Watch
+author hartle-tech
+version 1
+needs rx,storage
+
+> log starting a long watch
+> repeat 20
+>   sweep 1 13 1000
+>   wait 30000
+> end
+> log watch complete

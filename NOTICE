@@ -1,0 +1,36 @@
+Medusa
+Copyright 2026 HARTLE.TECH (NIPC 518241327, Porto, Portugal)
+
+A HARTLE.TECH research project for embedded wireless reconnaissance,
+defensive network posture analysis, and educational pentest tooling on
+microcontroller hardware. Sibling to Nosferato (single-board-computer
+lane) and companion to NearTrace (Android BLE scanner).
+
+Contact: contact@hartle.tech
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+──────────────────────────────────────────────────────────────────────────────
+
+Apache License 2.0 Section 4(d) describes how applicable attribution
+notices from a NOTICE file are carried in covered derivative
+distributions. See LICENSE for the exact terms and permitted forms of
+notice display; it does not require this file to be preserved unchanged.
+
+──────────────────────────────────────────────────────────────────────────────
+
+LAWFUL-USE STATEMENT
+
+Medusa is research and educational software for use on networks the
+operator owns, administers, or has explicit written permission to test.
+Use against networks or devices without authorization is illegal in
+most jurisdictions. HARTLE.TECH publishes this work for security
+researchers, network operators auditing their own infrastructure,
+educators, and capture-the-flag participants — not for unauthorized
+intrusion.
+
+This statement records HARTLE.TECH's intended use and support scope. It
+does not add a restriction to the Apache-2.0 license.
+
+Third-party components retain their own licenses. See go.mod (if
+present), platformio.ini library deps, and any vendor SDK terms.

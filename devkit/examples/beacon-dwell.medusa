@@ -1,0 +1,19 @@
+#!medusa-plugin 1
+# Park on the three non-overlapping channels for a long dwell each. Useful
+# when you already know where the estate lives and want depth, not breadth.
+id beacon-dwell
+name Non-overlapping Dwell
+author hartle-tech
+version 1
+needs rx,storage
+
+> log dwelling on 1, 6, 11
+> repeat 4
+>   channel 1
+>   scan 5000
+>   channel 6
+>   scan 5000
+>   channel 11
+>   scan 5000
+> end
+> log dwell complete

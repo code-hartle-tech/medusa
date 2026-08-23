@@ -1,0 +1,18 @@
+menu "Medusa Wi-Fi internals lab"
+
+config MEDUSA_LAB_CHANNEL
+    int "Initial 2.4 GHz channel"
+    range 1 13
+    default 1
+    help
+        Initial fixed channel for passive management-frame counting and the
+        single-frame, operator-triggered transmit experiments.
+
+config MEDUSA_LAB_COUNTRY_CODE
+    string "ISO 3166-1 alpha-2 Wi-Fi country code"
+    default "PT"
+    help
+        Passed to esp_wifi_set_country_code(). This lab does not bypass the
+        Wi-Fi driver's regulatory or channel controls.
+
+endmenu
